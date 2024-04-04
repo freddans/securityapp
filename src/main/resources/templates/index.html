@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+    <h1 th:text="${pageTitle}">ADMIN TITLE</h1>
+    <p th:text="${message}">ADMIN MESSAGE</p>
+</div>
+
+<div th:if="${#authorization.expression('hasRole(''USER'')')}">
+    <div th:each="cigar : ${cigarsList}">
+        <p th:text="${cigar.name}"></p>
+    </div>
+    <h1 th:text="${pageTitle}">USER TITLE</h1>
+    <p th:text="${message}">USER MESSAGE</p>
+</div>
+
+
+<h1 th:text="${pageTitle}">NO ADMIN NO USER Title</h1>
+
+<p th:text="${message}">NO ADMIN NO USER message</p>
+
+</body>
+</html>
